@@ -45,7 +45,7 @@ $(document).ready(function () {
 // loadMore
 $(document).ready(function () {
   $('.gallery-first__items').loadMoreResults({
-    displayedItems: 4,
+    displayedItems: 8,
     showItems: 4,
     button: {
       'class': 'gallery-first__button',
@@ -55,24 +55,116 @@ $(document).ready(function () {
 })
 
 
-// popup
+// popups
 
-$(document).ready(function () {
-  PopUpHide();
+var callbackOpen = document.querySelector('#callback__btn')
+var callbackOpen2 = document.querySelector('#callback__btn2')
+var callbackOpen3 = document.querySelector('#callback__btn3')
+var callbackOpen4 = document.querySelector('#callback__btn4')
+var callbackOpen5 = document.querySelector('#callback__btn5')
+var popupCallback = document.querySelector('.popup-callback')
+
+var confidentialityOpen = document.querySelector('.confidentiality__btn')
+var confidentialityOpen2 = document.querySelector('.confidentiality__btn2')
+var popupConfidentiality = document.querySelector('.popup-confidentiality')
+
+var popupClose = document.querySelector('.popap__close')
+var popupClose2 = document.querySelector('.popap__close2')
+
+
+callbackOpen.addEventListener('click', function(e) {
+  popupCallback.classList.remove('hidden')
+  e.preventDefault();
+})
+callbackOpen2.addEventListener('click', function(e) {
+  popupCallback.classList.remove('hidden')
+  e.preventDefault();
+})
+callbackOpen3.addEventListener('click', function(e) {
+  popupCallback.classList.remove('hidden')
+  e.preventDefault();
+})
+callbackOpen4.addEventListener('click', function(e) {
+  popupCallback.classList.remove('hidden')
+  e.preventDefault();
+})
+callbackOpen5.addEventListener('click', function(e) {
+  popupCallback.classList.remove('hidden')
+  e.preventDefault();
+})
+
+
+confidentialityOpen.addEventListener('click', function(e) {
+  popupConfidentiality.classList.remove('hidden')
+  e.preventDefault();
+})
+confidentialityOpen2.addEventListener('click', function(e) {
+  popupConfidentiality.classList.remove('hidden')
+  popupCallback.classList.add('hidden')
+  e.preventDefault();
+})
+
+popupClose.addEventListener('click', function(e) {
+  popupCallback.classList.add('hidden')
+  e.preventDefault();
+})
+popupClose2.addEventListener('click', function(e) {
+  popupConfidentiality.classList.add('hidden')
+  e.preventDefault();
+})
+
+var popupTnx = document.querySelector('.popup-tnx')
+var tnxOpen = document.querySelector('.popup-tnx')
+var popupClose3 = document.querySelector('.popup__close3')
+
+popupClose3.addEventListener('click', function() {
+  tnxOpen.classList.toggle('hidden')
+})
+
+var popupClose2 = document.querySelector('.popap__close2')
+popupClose2.addEventListener('click', function() {
+  popupConfidentiality.classList.add('hidden')
+})
+
+// uniMail
+
+$(document).ready(function() {
+
+	//E-mail Ajax Send
+	$("form").submit(function() { //Change
+		var th = $(this);
+		$.ajax({
+			type: "POST",
+			url: "mail.php", //Change
+			data: th.serialize()
+		}).done(function() {
+      popupTnx.classList.remove('hidden')
+      popupCallback.classList.add('hidden')
+			setTimeout(function() {
+				// Done Functions
+				th.trigger("reset");
+			}, 1000);
+		});
+		return false;
+	});
 });
 
-function PopUpShow() {
-  $(".popup-callback").show();
-}
+$(".popup-callback").on('click', function (e) {
+  if (e.target == this) $(".popup-callback").addClass('hidden');
+})
 
-function PopUpHide() {
-  $(".popup-callback").hide();
-  // $(".popup-tnx").hide();
-}
+$(".popup-tnx").on('click', function (e) {
+  if (e.target == this) $(".popup-tnx").addClass('hidden');
+})
 
-$(document).mouseup(function (e) {
-  var container = $(".popup-callback");
-  if (container.has(e.target).length === 0){
-      container.hide();
-  }
-});
+$(".popup-confidentiality").on('click', function (e) {
+  if (e.target == this) $(".popup-confidentiality").addClass('hidden');
+})
+
+
+var checkValid = document.querySelector('.check__valid')
+
+var ch = document.getElementById("check");
+function myFunc() {
+  checkValid.classList.remove('hidden')
+}

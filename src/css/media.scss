@@ -216,6 +216,9 @@
     .our-work__item {
         margin: 20px;
     }
+    .our-work__item:last-child {
+        margin-right: 20px; 
+    }
 
     footer {
         height: 100%;
@@ -337,5 +340,15 @@
 
     .popup-tnx__container {
         width: 85%;
+    }
+
+    .popup-confidentiality__container {
+        width: 90%;
+    }
+
+    .popup-confidentiality__container a {
+        position: fixed;
+        right: 15px;
+        left: 280px;
     }
 }
